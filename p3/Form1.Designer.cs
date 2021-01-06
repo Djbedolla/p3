@@ -46,6 +46,8 @@
             this.equal = new System.Windows.Forms.Button();
             this.txtCurrent = new System.Windows.Forms.TextBox();
             this.equation = new System.Windows.Forms.Label();
+            this.CLall = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -187,7 +189,7 @@
             this.mul.Name = "mul";
             this.mul.Size = new System.Drawing.Size(50, 50);
             this.mul.TabIndex = 12;
-            this.mul.Text = "X";
+            this.mul.Text = "x";
             this.mul.UseVisualStyleBackColor = true;
             this.mul.Click += new System.EventHandler(this.mul_Click);
             // 
@@ -222,6 +224,7 @@
             this.equal.TabIndex = 15;
             this.equal.Text = "=";
             this.equal.UseVisualStyleBackColor = true;
+            this.equal.Click += new System.EventHandler(this.equal_Click);
             // 
             // txtCurrent
             // 
@@ -240,11 +243,35 @@
             this.equation.Text = "label1";
             this.equation.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
+            // CLall
+            // 
+            this.CLall.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CLall.Location = new System.Drawing.Point(443, 250);
+            this.CLall.Name = "CLall";
+            this.CLall.Size = new System.Drawing.Size(50, 50);
+            this.CLall.TabIndex = 18;
+            this.CLall.Text = "ce";
+            this.CLall.UseVisualStyleBackColor = true;
+            this.CLall.Click += new System.EventHandler(this.CLall_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Location = new System.Drawing.Point(443, 194);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(50, 50);
+            this.btnClear.TabIndex = 19;
+            this.btnClear.Text = "c";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.CLall);
             this.Controls.Add(this.equation);
             this.Controls.Add(this.txtCurrent);
             this.Controls.Add(this.equal);
@@ -291,6 +318,8 @@
         private System.Windows.Forms.Button equal;
         private System.Windows.Forms.TextBox txtCurrent;
         private System.Windows.Forms.Label equation;
+        private System.Windows.Forms.Button CLall;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 

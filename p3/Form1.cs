@@ -67,7 +67,7 @@ namespace p3
         private void button8_Click(object sender, EventArgs e)
         {
             txtCurrent.Text = txtCurrent.Text + 8;
-        }
+        } 
 
         private void add_Click(object sender, EventArgs e)
         {
@@ -75,6 +75,7 @@ namespace p3
             {
                 function = "+";
                 equation.Text = txtCurrent.Text + function;
+                txtCurrent.Clear();
             }
             else
             {
@@ -88,6 +89,7 @@ namespace p3
             {
                 function = "÷";
                 equation.Text = txtCurrent.Text + function;
+                txtCurrent.Clear();
             }
             else
             {
@@ -101,6 +103,7 @@ namespace p3
             {
                 function = "x";
                 equation.Text = txtCurrent.Text + function;
+                txtCurrent.Clear();
             }
             else
             {
@@ -114,11 +117,55 @@ namespace p3
             {
                 function = "-";
                 equation.Text = txtCurrent.Text + function;
+                txtCurrent.Clear();
             }
             else
             {
                 txtCurrent.Text = "ERROR";
             }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtCurrent.Clear();
+        }
+
+        private void CLall_Click(object sender, EventArgs e)
+        {
+            txtCurrent.Clear();
+            first = second = answer = 0;
+            equation.Text = "";
+            function = "";
+        }
+
+        private void equal_Click(object sender, EventArgs e)
+        {
+            if (Double.TryParse(txtCurrent.Text, out second))
+            {
+                if (function == "+")
+                {
+                    answer = first + second;
+                }
+                else if(function == "-")
+                {
+                    answer = first - second;
+                }
+                else if (function == "x")
+                {
+                    answer = first * second;
+                }
+                else if (function == "÷")
+                {
+                    answer = first / second;
+                }
+                txtCurrent.Text = "" + answer;
+                equation.Text = equation.Text + second + "=";
+            }
+            else
+            {
+                txtCurrent.Text = "ERROR";
+            }
+            
         }
 
         private void button10_Click(object sender, EventArgs e)

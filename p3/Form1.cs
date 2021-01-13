@@ -14,6 +14,8 @@ namespace p3
     {
         double first, second, answer;
         string function;
+        cel head;
+        cel current;
         public Form1()
         {
             InitializeComponent();
@@ -27,6 +29,8 @@ namespace p3
         private void Form1_Load(object sender, EventArgs e)
         {
             equation.Text = "";
+            head = new cel();
+            current = head;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -73,9 +77,11 @@ namespace p3
         {
             if(Double.TryParse(txtCurrent.Text, out first))
             {
-                function = "+";
-                equation.Text = txtCurrent.Text + function;
+
+                AddToList(first,"+");
+                
                 txtCurrent.Clear();
+                PrintList();
             }
             else
             {
@@ -87,9 +93,9 @@ namespace p3
         {
             if (Double.TryParse(txtCurrent.Text, out first))
             {
-                function = "÷";
-                equation.Text = txtCurrent.Text + function;
+                AddToList(first, "÷");
                 txtCurrent.Clear();
+                PrintList();
             }
             else
             {
@@ -101,9 +107,9 @@ namespace p3
         {
             if (Double.TryParse(txtCurrent.Text, out first))
             {
-                function = "x";
-                equation.Text = txtCurrent.Text + function;
+                AddToList(first, "-");
                 txtCurrent.Clear();
+                PrintList();
             }
             else
             {
@@ -115,9 +121,9 @@ namespace p3
         {
             if (Double.TryParse(txtCurrent.Text, out first))
             {
-                function = "-";
-                equation.Text = txtCurrent.Text + function;
+                AddToList(first, "-");
                 txtCurrent.Clear();
+                PrintList();
             }
             else
             {
@@ -176,6 +182,38 @@ namespace p3
         private void button11_Click(object sender, EventArgs e)
         {
             txtCurrent.Text = txtCurrent.Text + ".";
+        }
+        private void AddToList(double x, string s)
+        {
+            current.number = x;
+            current.n = true;
+            current.s = false;
+            current = current.next;
+            current = new cel();
+            current.symbol = s;
+            current.s = true;
+            current.n = false;
+            current = current.next;
+            current = new cel();
+        }
+        private void PrintList()
+        {
+            cel print = head;
+            string temp = "";
+
+            do
+            {
+                if (print.n)
+                {
+                    temp = temp + print.number;
+
+                }
+                else
+                {
+                    temp = temp + print.symbol;
+                }
+                print = print.next;
+            } while (print != current);
         }
     }
 }

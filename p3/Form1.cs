@@ -142,28 +142,15 @@ namespace p3
             first = second = answer = 0;
             equation.Text = "";
             function = "";
+            head = null;
+            current = null;
         }
 
         private void equal_Click(object sender, EventArgs e)
         {
             if (Double.TryParse(txtCurrent.Text, out second))
             {
-                if (function == "+")
-                {
-                    answer = first + second;
-                }
-                else if(function == "-")
-                {
-                    answer = first - second;
-                }
-                else if (function == "x")
-                {
-                    answer = first * second;
-                }
-                else if (function == "÷")
-                {
-                    answer = first / second;
-                }
+                answer = Calculate();
                 txtCurrent.Text = "" + answer;
                 equation.Text = equation.Text + second + "=";
             }
@@ -214,6 +201,11 @@ namespace p3
                 }
                 print = print.next;
             } while (print != current);
+        }
+        static double Calculate()
+        {
+            double a = 0;
+            return a;
         }
     }
 }

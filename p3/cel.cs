@@ -8,7 +8,7 @@ namespace p3
 {
     class cel
     {
-        public cel prec;
+        public cel previous;
         public cel next;
         public double number;
         public string symbol;

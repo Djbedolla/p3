@@ -282,10 +282,6 @@ namespace p3
                 s = s.next;
             }
         }
-        static double Calculate()
-        {
-            double a = 0;
-            return a;
-        }
+        
     }
 }

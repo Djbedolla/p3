@@ -29,7 +29,7 @@ namespace p3
         private void Form1_Load(object sender, EventArgs e)
         {
             equation.Text = "";
-            head = new cel();
+            head = null;
             current = head;
         }
 
@@ -75,60 +75,32 @@ namespace p3
 
         private void add_Click(object sender, EventArgs e)
         {
-            if(Double.TryParse(txtCurrent.Text, out first))
-            {
-
-                AddToList(first,"+");
-                
-                txtCurrent.Clear();
-                PrintList();
-            }
-            else
-            {
-                txtCurrent.Text = "ERROR";
-            }
+            AddToList("+");
+            PrintList();
+            txtCurrent.Clear();
         }
 
         private void divide_Click(object sender, EventArgs e)
         {
-            if (Double.TryParse(txtCurrent.Text, out first))
-            {
-                AddToList(first, "÷");
-                txtCurrent.Clear();
-                PrintList();
-            }
-            else
-            {
-                txtCurrent.Text = "ERROR";
-            }
+           
+            AddToList("÷");
+            PrintList();
+            txtCurrent.Clear();
         }
 
         private void mul_Click(object sender, EventArgs e)
         {
-            if (Double.TryParse(txtCurrent.Text, out first))
-            {
-                AddToList(first, "-");
-                txtCurrent.Clear();
-                PrintList();
-            }
-            else
-            {
-                txtCurrent.Text = "ERROR";
-            }
+            AddToList("x");
+            PrintList();
+            txtCurrent.Clear();
         }
 
         private void sub_Click(object sender, EventArgs e)
         {
-            if (Double.TryParse(txtCurrent.Text, out first))
-            {
-                AddToList(first, "-");
-                txtCurrent.Clear();
-                PrintList();
-            }
-            else
-            {
-                txtCurrent.Text = "ERROR";
-            }
+            AddToList("-");
+            PrintList();
+            txtCurrent.Clear();
+
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -170,25 +142,55 @@ namespace p3
         {
             txtCurrent.Text = txtCurrent.Text + ".";
         }
-        private void AddToList(double x, string s)
+        private void AddToList(string s)
         {
-            current.number = x;
-            current.n = true;
-            current.s = false;
-            current = current.next;
-            current = new cel();
-            current.symbol = s;
-            current.s = true;
-            current.n = false;
-            current = current.next;
-            current = new cel();
+            if(Double.TryParse(txtCurrent.Text,out first))
+            {
+                if (head == null)
+                {
+                    head = new cel();
+                    current = head;
+                    current.number = first;
+                    current.n = true;
+                    if (s != "=")
+                    {
+                        current.next = new cel();
+                        current = current.next;
+                        current.symbol = s;
+                        current.n = false;
+                        current.next = null;
+                    }
+                }
+                else
+                {
+                    current.next = new cel();
+                    current = current.next;
+                    current.number = first;
+                    current.n = true;
+                    if (s != "=")
+                    {
+                        current.next = new cel();
+                        current = current.next;
+                        current.symbol = s;
+                        current.n = false;
+                        current.next = null;
+
+                    }
+                }
+
+            }
+            else
+            {
+                equation.Text = "ERROR";
+                txtCurrent.Clear();
+            }
         }
         private void PrintList()
         {
             cel print = head;
             string temp = "";
 
-            do
+            while(print!=null)
             {
                 if (print.n)
                 {
@@ -200,12 +202,86 @@ namespace p3
                     temp = temp + print.symbol;
                 }
                 print = print.next;
-            } while (print != current);
+            }
+            equation.Text = temp;
         }
-        static double Calculate()
+       private double Calculate()
         {
-            double a = 0;
-            return a;
+          
+            Multiply();
+            Divide();
+            Add();
+            Sub();
+            return head.number;
         }
+        private void Multiply()
+        {
+            
+            cel m = head;
+            cel temp;
+            while (m != null)
+            {
+                if (m.next.symbol == "x")
+                {
+                    double answer = m.number * m.next.next.number;
+                    temp = m.next.next;
+                    m.next = temp;
+                    m.number = answer;
+                }
+                m = m.next;
+            }
+        }
+        private void Divide()
+        {
+
+            cel d= head;
+            cel temp;
+            while (d != null)
+            {
+                if (d.next.symbol == "÷")
+                {
+                    double answer = d.number / d.next.next.number;
+                    temp = d.next.next;
+                    d.next = temp;
+                    d.number = answer;
+                }
+                d = d.next;
+            }
+        }
+        private void Add()
+        {
+
+            cel a = head;
+            cel temp;
+            while (a != null)
+            {
+                if (a.next.symbol == "+")
+                {
+                    double answer = a.number + a.next.next.number;
+                    temp = a.next.next;
+                    a.next = temp;
+                    a.number = answer;
+                }
+                a = a.next;
+            }
+        }
+        private void Sub()
+        {
+
+            cel s = head;
+            cel temp;
+            while (s != null)
+            {
+                if (s.next.symbol == "-")
+                {
+                    double answer = s.number - s.next.next.number;
+                    temp = s.next.next;
+                    s.next = temp;
+                    s.number = answer;
+                }
+                s = s.next;
+            }
+        }
+        
     }
 }

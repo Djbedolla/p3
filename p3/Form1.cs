@@ -211,16 +211,19 @@ namespace p3
             
             cel m = head;
             cel temp;
-            while (m.symbol!="=")
+            while (m.symbol != "=")
             {
                 if (m.next.symbol == "x")
                 {
                     double answer = m.number * m.next.next.number;
-                    temp = m.next.next;
+                    temp = m.next.next.next;
                     m.next = temp;
                     m.number = answer;
                 }
-                m = m.next;
+                else
+                {
+                    m = m.next;
+                }
             }
         }
         private void Divide()
@@ -233,13 +236,23 @@ namespace p3
                 if (d.next.symbol == "÷")
                 {
                     double answer = d.number / d.next.next.number;
-                    temp = d.next.next;
+                    temp = d.next.next.next;
                     d.next = temp;
                     d.number = answer;
                 }
-                d = d.next;
+                else
+                {
+                    d = d.next;
+                }
+                
             }
         }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
         private void Add()
         {
 
@@ -250,11 +263,15 @@ namespace p3
                 if (a.next.symbol == "+")
                 {
                     double answer = a.number + a.next.next.number;
-                    temp = a.next.next;
+                    temp = a.next.next.next;
                     a.next = temp;
                     a.number = answer;
                 }
-                a = a.next;
+                else
+                {
+                    a = a.next;
+                }
+                
             }
         }
         private void Sub()
@@ -267,11 +284,14 @@ namespace p3
                 if (s.next.symbol == "-")
                 {
                     double answer = s.number - s.next.next.number;
-                    temp = s.next.next;
+                    temp = s.next.next.next;
                     s.next = temp;
                     s.number = answer;
                 }
-                s = s.next;
+                else
+                {
+                    s = s.next;
+                }
             }
         }
         

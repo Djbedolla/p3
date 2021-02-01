@@ -219,7 +219,7 @@ namespace p3
             
             cel m = head;
             cel temp;
-            while (m != null)
+            while (m.next!= null)
             {
                 if (m.next.symbol == "x")
                 {
@@ -236,7 +236,7 @@ namespace p3
 
             cel d= head;
             cel temp;
-            while (d != null)
+            while (d.next != null)
             {
                 if (d.next.symbol == "÷")
                 {
@@ -253,7 +253,7 @@ namespace p3
 
             cel a = head;
             cel temp;
-            while (a != null)
+            while (a.next != null)
             {
                 if (a.next.symbol == "+")
                 {
@@ -270,7 +270,7 @@ namespace p3
 
             cel s = head;
             cel temp;
-            while (s != null)
+            while (s.next != null)
             {
                 if (s.next.symbol == "-")
                 {

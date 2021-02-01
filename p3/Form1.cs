@@ -120,17 +120,11 @@ namespace p3
 
         private void equal_Click(object sender, EventArgs e)
         {
-            if (Double.TryParse(txtCurrent.Text, out second))
-            {
-                answer = Calculate();
-                txtCurrent.Text = "" + answer;
-                equation.Text = equation.Text + second + "=";
-            }
-            else
-            {
-                txtCurrent.Text = "ERROR";
-            }
-            
+            AddToList("=");
+            PrintList();
+            txtCurrent.Clear();
+            double answer = Calculate();
+            txtCurrent.Text = ""+answer;
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -152,14 +146,13 @@ namespace p3
                     current = head;
                     current.number = first;
                     current.n = true;
-                    if (s != "=")
-                    {
-                        current.next = new cel();
-                        current = current.next;
-                        current.symbol = s;
-                        current.n = false;
-                        current.next = null;
-                    }
+                    
+                    current.next = new cel();
+                    current = current.next;
+                    current.symbol = s;
+                    current.n = false;
+                    current.next = null;
+                    
                 }
                 else
                 {
@@ -167,15 +160,14 @@ namespace p3
                     current = current.next;
                     current.number = first;
                     current.n = true;
-                    if (s != "=")
-                    {
-                        current.next = new cel();
-                        current = current.next;
-                        current.symbol = s;
-                        current.n = false;
-                        current.next = null;
+                    
+                    current.next = new cel();
+                    current = current.next;
+                    current.symbol = s;
+                    current.n = false;
+                    current.next = null;
 
-                    }
+                    
                 }
 
             }
@@ -219,7 +211,7 @@ namespace p3
             
             cel m = head;
             cel temp;
-            while (m.next!= null)
+            while (m.symbol!="=")
             {
                 if (m.next.symbol == "x")
                 {
@@ -236,7 +228,7 @@ namespace p3
 
             cel d= head;
             cel temp;
-            while (d.next != null)
+            while (d.symbol != "=")
             {
                 if (d.next.symbol == "÷")
                 {
@@ -253,7 +245,7 @@ namespace p3
 
             cel a = head;
             cel temp;
-            while (a.next != null)
+            while (a.symbol != "=")
             {
                 if (a.next.symbol == "+")
                 {
@@ -270,7 +262,7 @@ namespace p3
 
             cel s = head;
             cel temp;
-            while (s.next != null)
+            while (s.symbol != "=")
             {
                 if (s.next.symbol == "-")
                 {

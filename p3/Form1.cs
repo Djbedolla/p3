@@ -250,7 +250,36 @@ namespace p3
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
+            char p = e.KeyChar;
+            if (p == '1' || p == '2' || p == '3' || p == '4' || p == '5' || p == '6' || p == '7' || p == '8' || p == '9' || p == '0')
+            {
+                if (txtCurrent.Text == "ERROR")
+                {
+                    txtCurrent.Clear();
 
+                }
+                txtCurrent.Text = txtCurrent.Text + p;
+
+            }
+            else if (p == 'x' ||p=='+'||p=='÷'||p=='-')
+            {
+                string s = "" + p;
+                AddToList(s);
+                PrintList();
+                txtCurrent.Clear();
+            }
+            else if (p == (char)Keys.Enter)
+            {
+               
+                AddToList("");
+                PrintList();
+                txtCurrent.Clear();
+                double answer = Calculate();
+                txtCurrent.Text = ""+answer;
+            }
+            
+
+            
         }
 
         private void Add()

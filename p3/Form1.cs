@@ -31,6 +31,7 @@ namespace p3
             equation.Text = "";
             head = null;
             current = head;
+            this.KeyPreview = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -273,7 +274,7 @@ namespace p3
                
                 AddToList("");
                 PrintList();
-                txtCurrent.Clear();
+                txtCurrent.Clear();               
                 double answer = Calculate();
                 txtCurrent.Text = ""+answer;
             }

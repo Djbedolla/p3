@@ -32,6 +32,8 @@ namespace p3
             head = null;
             current = head;
             this.KeyPreview = true;
+            equal.Focus();
+            equal.Select();
         }
 
         private void button1_Click(object sender, EventArgs e)
